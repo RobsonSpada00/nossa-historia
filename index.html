@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Nossa História ❤️</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+background:#000;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+overflow:hidden;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+#intro{
+position:absolute;
+color:white;
+text-align:center;
+animation:fadeOut 2s forwards;
+animation-delay:2s;
+z-index:2;
+}
+
+#intro h1{
+font-size:52px;
+margin-bottom:20px;
+}
+
+#intro p{
+font-size:22px;
+opacity:.8;
+}
+
+video{
+width:100%;
+height:100%;
+object-fit:cover;
+display:none;
+}
+
+#final{
+position:absolute;
+display:none;
+text-align:center;
+color:white;
+animation:fadeIn 3s;
+}
+
+#final h1{
+font-size:50px;
+margin-bottom:20px;
+}
+
+#final p{
+font-size:24px;
+opacity:.8;
+}
+
+@keyframes fadeOut{
+to{
+opacity:0;
+visibility:hidden;
+}
+}
+
+@keyframes fadeIn{
+from{
+opacity:0;
+}
+to{
+opacity:1;
+}
+}
+
+</style>
+
+</head>
+<body>
+
+<div id="intro">
+
+<h1>Nossa História ❤️</h1>
+
+<p>Esse é só o começo...</p>
+
+</div>
+
+<video id="video" autoplay playsinline controlslist="nodownload">
+
+<source src="video.mp4" type="video/mp4">
+
+</video>
+
+<div id="final">
+
+<h1>❤️</h1>
+
+<p>Esse é só o primeiro capítulo da nossa história...</p>
+
+</div>
+
+<script>
+
+const video=document.getElementById("video");
+
+setTimeout(()=>{
+
+document.getElementById("intro").style.display="none";
+
+video.style.display="block";
+
+video.play();
+
+},3000);
+
+video.onended=function(){
+
+video.style.display="none";
+
+document.getElementById("final").style.display="block";
+
+}
+
+</script>
+
+</body>
+</html>
