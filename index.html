@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -14,92 +15,140 @@ padding:0;
 box-sizing:border-box;
 }
 
-body{
+html,body{
+width:100%;
+height:100%;
 background:#000;
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
 overflow:hidden;
 font-family:Arial,Helvetica,sans-serif;
 }
 
+body{
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
 #intro{
+
 position:absolute;
-color:white;
-text-align:center;
-animation:fadeOut 2s forwards;
-animation-delay:2s;
-z-index:2;
+width:100%;
+height:100%;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+background:#000;
+z-index:10;
+
+transition:opacity 2s;
+
 }
 
 #intro h1{
-font-size:52px;
-margin-bottom:20px;
+
+font-size:60px;
+color:white;
+margin-bottom:15px;
+
 }
 
 #intro p{
-font-size:22px;
-opacity:.8;
+
+color:#ddd;
+font-size:24px;
+
 }
 
-video{
+#video{
+
+position:absolute;
 width:100%;
 height:100%;
 object-fit:cover;
 display:none;
+
 }
 
 #final{
+
 position:absolute;
+
+width:100%;
+height:100%;
+
+background:#000;
+
 display:none;
+
+justify-content:center;
+align-items:center;
+
+flex-direction:column;
+
 text-align:center;
-color:white;
-animation:fadeIn 3s;
+
+animation:fade 3s;
+
 }
 
 #final h1{
-font-size:50px;
-margin-bottom:20px;
+
+font-size:65px;
+color:white;
+margin-bottom:25px;
+
 }
 
 #final p{
-font-size:24px;
-opacity:.8;
+
+font-size:28px;
+color:#ddd;
+line-height:42px;
+
 }
 
-@keyframes fadeOut{
-to{
-opacity:0;
-visibility:hidden;
-}
-}
+@keyframes fade{
 
-@keyframes fadeIn{
 from{
+
 opacity:0;
+
 }
+
 to{
+
 opacity:1;
+
 }
+
 }
 
 </style>
 
 </head>
+
 <body>
 
 <div id="intro">
 
-<h1>Nossa História ❤️</h1>
+<h1>❤️</h1>
 
-<p>Esse é só o começo...</p>
+<h1>Nossa História</h1>
+
+<p>Esse vídeo foi feito especialmente para você...</p>
 
 </div>
 
-<video id="video" autoplay playsinline controlslist="nodownload">
+<video
+id="video"
+playsinline
+autoplay
+controlslist="nodownload noplaybackrate"
+disablepictureinpicture
+>
 
-<source src="video.mp4" type="video/mp4">
+<source src="https://res.cloudinary.com/gnpsibau/video/upload/v1784165978/0715_lcyi0u.mp4" type="video/mp4">
 
 </video>
 
@@ -107,29 +156,52 @@ opacity:1;
 
 <h1>❤️</h1>
 
-<p>Esse é só o primeiro capítulo da nossa história...</p>
+<p>
+
+Esse é só o primeiro capítulo da nossa história...
+
+<br><br>
+
+Com carinho,
+
+<br>
+
+Robson ❤️
+
+</p>
 
 </div>
 
 <script>
 
+const intro=document.getElementById("intro");
 const video=document.getElementById("video");
+const final=document.getElementById("final");
 
 setTimeout(()=>{
 
-document.getElementById("intro").style.display="none";
+intro.style.opacity="0";
+
+setTimeout(()=>{
+
+intro.style.display="none";
 
 video.style.display="block";
 
-video.play();
+video.play().catch(() => {
+  // Alguns navegadores bloqueiam autoplay com áudio.
+  // Nesse caso, o usuário precisará tocar na tela.
+});
 
-},3000);
+},2000);
+
+},2500);
 
 video.onended=function(){
 
 video.style.display="none";
 
-document.getElementById("final").style.display="block";
+final.style.display="flex";
 
 }
 
